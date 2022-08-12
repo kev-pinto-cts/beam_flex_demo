@@ -27,6 +27,7 @@ init: ## Build Bucket for Demo and the Artifact Registry -- Run this One time On
 	--region=${GCP_REGION} \
 	--enable-private-ip-google-access
 	@echo "Enabling Dataflow Service...." && gcloud services enable dataflow --project ${GCP_PROJECT}
+	@echo "Enabling Artifact Registry..." && gcloud services enable artifactregistry.googleapis.com
 	@echo "Building Bucket to Store template...." && gsutil mb -c standard -l ${GCP_REGION} -p ${GCP_PROJECT} ${GCS_PATH}
 	@echo "Building Artifact Repo to Store Docker Image of Code...." && gcloud artifacts repositories create ${TEMPLATE_NAME} \
     --repository-format=docker \
